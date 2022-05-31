@@ -8,7 +8,9 @@ File extension: **.smp**
 
 Simple is a **2D** **practical** language. 
 
-Simple can be compressed to Superior Simple by the compressor. 
+Simple can be compressed to SuperiorSimple by the compressor. 
+
+SuperiorSimple code is then decompressed using the decompressor. 
 
 Simple is called Simple because, well, it is simple. 
 
