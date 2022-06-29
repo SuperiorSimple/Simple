@@ -1,5 +1,6 @@
 DEBUG = True
-CODE = 'some code 12345 n12345 !n n !n'
+CODE = 'some code 123@12345@12345>@@>@'
+
 
 # Stack class
 
@@ -14,17 +15,20 @@ class Stack:
         self.items.append(item)
 
     def pop(self):
-        try: return self.items.pop()
-        except IndexError: return None
+        try:
+            return self.items.pop()
+        except IndexError:
+            return None
 
     def peek(self):
-        return self.items[len(self.items)-1]
+        return self.items[len(self.items) - 1]
 
     def size(self):
         return len(self.items)
 
     def __str__(self):
         return '<' + str(self.items)[1:-1] + '>'
+
 
 def is_true(popped):
     # number is true iff > 0
@@ -45,6 +49,7 @@ def is_true(popped):
         if popped_type is list:
             return all([is_true(item) for item in popped])
 
+
 stack = Stack()
 pointer = 0
 
@@ -57,12 +62,12 @@ while pointer < len(CODE):
         print('Stack:', stack)
         print('\n')
 
-    if character in '!':
+    if character in '>':
         # SKIP NEXT COMMAND IF pop() IS TRUE
         if is_true(stack.pop()):
             pointer += 1
 
-    if character in 'n':
+    if character in '@':
         # PUSH 0
         stack.push(0)
 
@@ -99,9 +104,33 @@ while pointer < len(CODE):
             # if popped is None, push character
             stack.push(int(character))
 
+    if character in '#':
+        # PUSH ''
+        stack.push('')
+
+    if character in 'qwertyuiopasdfghjklzxcvbnm QWERTYUIOPASDFGHJKLZXCVBNM:;\'",.()!':
+        popped = stack.pop()
+        popped_type = type(popped)
+        if popped is not None:
+            if popped_type is int:
+                # if popped is num, push popped and push ord(character)
+                stack.push(popped)
+                stack.push(ord(character))
+            if popped_type is str:
+                # if popped is str, push popped + character
+                stack.push(popped + character)
+            if popped_type is bool:
+                # if popped is bool, push character if true, else push ''
+                if popped:
+                    stack.push(character)
+                else:
+                    stack.push('')
+            if popped_type is list:
+                pass  # Work in progress
+        else:
+            stack.push(character)
 
     pointer += 1
-
 
 if DEBUG:
     print('Pointer:', pointer)
