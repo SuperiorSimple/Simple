@@ -6,7 +6,7 @@ File extension: **.smp**
 
 ## Description
 
-Simple is a **2D** **practical** language. 
+Simple is a **stack-based** **practical** **esoteric** **golfing** language, designed to be a **4th generation golfing language**. 
 
 Simple can be compressed to SuperiorSimple by the compressor. 
 
